@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { productsAPI } from '../../libs/api';
 
-const ListProducts = () => {
+const ListProducts = (props) => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -14,6 +14,7 @@ const ListProducts = () => {
         const info = await productsAPI.getProducts();
 
         setProducts(info.data);
+        props.setProducts(info.data);
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -25,6 +26,7 @@ const ListProducts = () => {
     getProducts();
   },[]);
 
+  const data = props.isSearching ? props.data : products;
   return (
     <>
       {
@@ -33,8 +35,8 @@ const ListProducts = () => {
         :
           <>
           {error && <div> {errorMessage} </div>}
-          {products.map(p => 
-            <div>
+          {data.map(p => 
+            <div key={p.id}>
               <p>{p.id}</p>
               <p>{p.title}</p>
               <p>{p.price}</p>

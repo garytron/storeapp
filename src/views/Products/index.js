@@ -1,11 +1,10 @@
 import ListProducts from './ListProducts';
-import Categories from '../Categories';
 
-const Products = () => {
+const Products = (props) => {
+  
   return (
     <>
-        <Categories />
-        <ListProducts />
+      <ListProducts {...props} />
     </>
   )
 }

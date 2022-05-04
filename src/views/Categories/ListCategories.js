@@ -34,7 +34,7 @@ const ListCategories = () => {
           <>
           {error && <div> {errorMessage} </div>}
           {categories.map(category => 
-            <div>
+            <div key={category}>
               <p>{category}</p>
             </div>
           )}

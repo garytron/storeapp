@@ -1,8 +1,12 @@
 import ListProducts from './ListProducts';
+import Categories from '../Categories';
 
 const Products = () => {
   return (
-    <ListProducts />
+    <>
+        <Categories />
+        <ListProducts />
+    </>
   )
 }
 

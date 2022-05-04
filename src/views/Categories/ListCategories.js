@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
-import { productsAPI } from '../../libs/api';
+import { categoriesAPI } from '../../libs/api';
 
-const ListProducts = () => {
-  const [products, setProducts] = useState([]);
+const ListCategories = () => {
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     
-    const getProducts = async () => {
+    const getData = async () => {
       try {
-        const info = await productsAPI.getProducts();
+        const info = await categoriesAPI.getCategories();
 
-        setProducts(info.data);
+        setCategories(info.data);
         setLoading(false);
       } catch (error) {
         setError(true);
-        setErrorMessage('Sorry! We encountered a problem while loading products list. Please, try again later.');
+        setErrorMessage('Sorry! We encountered a problem while loading categories list. Please, try again later.');
         setLoading(false);
       }
     }
 
-    getProducts();
+    getData();
   },[]);
 
   return (
@@ -33,12 +33,9 @@ const ListProducts = () => {
         :
           <>
           {error && <div> {errorMessage} </div>}
-          {products.map(p => 
+          {categories.map(category => 
             <div>
-              <p>{p.id}</p>
-              <p>{p.title}</p>
-              <p>{p.price}</p>
-              <p>{p.category}</p>
+              <p>{category}</p>
             </div>
           )}
           </>
@@ -47,4 +44,4 @@ const ListProducts = () => {
   );
 }
 
-export default ListProducts;
+export default ListCategories;

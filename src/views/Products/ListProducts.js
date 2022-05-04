@@ -26,7 +26,9 @@ const ListProducts = (props) => {
     getProducts();
   },[]);
 
-  const data = props.isSearching ? props.data : products;
+  let  data = props.isSearching ? props.data : products;
+  data = props.isFiltered ? data.filter(d => d.category === props.category) : data;
+  
   return (
     <>
       {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { categoriesAPI } from '../../libs/api';
 
-const ListCategories = () => {
+const ListCategories = (props) => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -25,6 +25,17 @@ const ListCategories = () => {
     getData();
   },[]);
 
+  const onClickCategory = (category) => {
+    props.setCategory((prevCategory) => {
+      if(prevCategory !== category){
+        props.setIsFiltered(true);
+      }else{
+        props.setIsFiltered((value) => !value);
+      }
+      return category;
+    });
+  }
+
   return (
     <>
       {
@@ -34,7 +45,7 @@ const ListCategories = () => {
           <>
           {error && <div> {errorMessage} </div>}
           {categories.map(category => 
-            <div key={category}>
+            <div key={category} onClick={() => onClickCategory(category)}>
               <p>{category}</p>
             </div>
           )}

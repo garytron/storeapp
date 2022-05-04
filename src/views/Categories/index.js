@@ -1,9 +1,9 @@
 import ListCategories from './ListCategories';
 
-const Cart = () => {
+const Categories = (props) => {
   return (
-    <ListCategories />
+    <ListCategories {...props} />
   )
 }
 
-export default Cart;
+export default Categories;

@@ -1,7 +1,8 @@
+import ListProducts from './ListProducts';
 
 const Products = () => {
   return (
-    <div>Products</div>
+    <ListProducts />
   )
 }
 

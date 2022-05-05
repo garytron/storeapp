@@ -39,7 +39,7 @@ const ListProducts = (props) => {
           {error && <div> {errorMessage} </div>}
           <div className='container'>
             {data.map(p =>
-            <div className='column' key={p.id}>
+            <div className='column' key={p.id} onClick={() => props.setShowProduct(p)}>
               <div className='card'>
                 <img src={p.image} alt={p.title}/>
                 <div className='card-container'>

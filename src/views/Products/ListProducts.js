@@ -28,23 +28,32 @@ const ListProducts = (props) => {
 
   let  data = props.isSearching ? props.data : products;
   data = props.isFiltered ? data.filter(d => d.category === props.category) : data;
-  
+
   return (
     <>
       {
         loading ?
           <>Loading...</>
-        :
+          :
           <>
           {error && <div> {errorMessage} </div>}
-          {data.map(p => 
-            <div key={p.id}>
-              <p>{p.id}</p>
-              <p>{p.title}</p>
-              <p>{p.price}</p>
-              <p>{p.category}</p>
+          <div className='container'>
+            {data.map(p =>
+            <div className='column' key={p.id}>
+              <div className='card'>
+                <img src={p.image} alt={p.title}/>
+                <div className='card-container'>
+                  <div className='container-left pull-left'>
+                    <p className='title'>{p.title}</p>
+                  </div>
+                  <div className='container-right pull-right'>
+                    <p>${p.price}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
+            )}
+          </div>
           </>
       }
     </>

@@ -3,6 +3,7 @@ import { categoriesAPI } from '../../libs/api';
 
 const ListCategories = (props) => {
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(true);
@@ -34,19 +35,23 @@ const ListCategories = (props) => {
       }
       return category;
     });
+
+    setCategory((prevCategory) => (prevCategory !== category) ? category : null);
+
   }
 
+  const styles = {color: "#fff", backgroundColor: "rgb(124, 91, 91)"};
   return (
     <>
       {
         loading ?
           <>Loading...</>
-        :
+          :
           <>
           {error && <div> {errorMessage} </div>}
-          {categories.map(category => 
-            <div key={category} onClick={() => onClickCategory(category)}>
-              <p>{category}</p>
+          {categories.map(c => 
+            <div className="categories" style={c === category ? styles : {}} key={c} onClick={() => onClickCategory(c)}>
+              <p>{c}</p>
             </div>
           )}
           </>

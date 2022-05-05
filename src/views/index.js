@@ -13,8 +13,9 @@ const App = () => {
   data = isSearching ? filteredData : data;
   return (
     <>
-      <Search data={data} setFilteredData={(filteredData, isSearching) => {setFilteredData(filteredData); setIsSearching(isSearching)}}  />
+      <Search data={data} placeholder="Type a name..." setFilteredData={(filteredData, isSearching) => {setFilteredData(filteredData); setIsSearching(isSearching)}}  />
       <Categories setIsFiltered={(isFiltered) => setIsFiltered(isFiltered)} setCategory={(category) => setCategory(category)} />
+      <div className='clearfix' />
       <Products data={data} isSearching={isSearching} isFiltered={isFiltered} category={category} setProducts={(products) => setData(products)}/>
     </>
   )

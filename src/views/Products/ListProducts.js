@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { productsAPI } from '../../libs/api';
+import Loading from '../../components/Loading';
 
 const ListProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const ListProducts = (props) => {
     <>
       {
         loading ?
-          <>Loading...</>
+          <Loading />
           :
           <>
           {error && <div> {errorMessage} </div>}

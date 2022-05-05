@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { productsAPI } from '../../libs/api';
 import Loading from '../../components/Loading';
+import Card from '../../components/Card';
 
 const ListProducts = (props) => {
   const [products, setProducts] = useState([]);
@@ -37,24 +38,10 @@ const ListProducts = (props) => {
           <Loading />
           :
           <>
-          {error && <div> {errorMessage} </div>}
-          <div className='container'>
-            {data.map(p =>
-            <div className='column' key={p.id} onClick={() => props.setShowProduct(p)}>
-              <div className='card'>
-                <img src={p.image} alt={p.title}/>
-                <div className='card-container'>
-                  <div className='container-left pull-left'>
-                    <p className='title'>{p.title}</p>
-                  </div>
-                  <div className='container-right pull-right'>
-                    <p>${p.price}</p>
-                  </div>
-                </div>
-              </div>
+            {error && <div> {errorMessage} </div>}
+            <div className='container'>
+              {data.map(p => <Card product={p} setShowProduct={(() => props.setShowProduct(p))} key={p.id}/>)}
             </div>
-            )}
-          </div>
           </>
       }
     </>
